@@ -2,7 +2,7 @@
 A mini implementation of Spring ioc and aop
 
 <h2>项目说明</h2>
-mini-spring这个项目是我在学习Spring过程中自己根据Spring的思想而开发的，是一个mini版的Spring。Spring源码很多，真正读懂可能需要花费很长时间。mini-spring实现了spring ioc和aop的主要功能，有助于快速理清Spring的原理。
+mini-spring这个项目是我在学习Spring过程中自己根据Spring的思想而开发的，是一个mini版的Spring。Spring源码很多，真正读懂可能需要花费很长时间。mini-spring实现了spring ioc和aop的主要功能，有助于快速理清Spring的结构。
 <h2>支持功能</h2>
 <ol>
 <li>支持通过xml方式配置。</li>
