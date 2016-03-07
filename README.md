@@ -12,5 +12,7 @@ mini-spring项目可以看做是一个mini版的Spring，对Spring中ioc和aop�
 <li>支持切面链（advisorChain），支持order配置参数指定切面的顺序。</li>
 </ol>
 <h2>感谢</h2>
+<ol>
 本项目参考了code4craft的tiny-spring
 <a href="https://github.com/code4craft/tiny-spring">https://github.com/code4craft/tiny-spring</a>
+</ol>
