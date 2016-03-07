@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="aop" class="com.xin.minispring.aop.DefaultAdvisorAutoProxyCreator">
+		<property name="proxyTargetClass" value="false"></property>
+	</bean>
+
+	<bean id="outputService" class="com.xin.minispring.bean.OutputService"></bean>
+	
+	<bean id="helloWorldService" class="com.xin.minispring.bean.HelloWorldServiceImpl">
+		<property name="text" value="Hello World"></property>
+		<property name="outputService" ref="outputService"></property>
+	</bean>
+	
+	<bean id="performance" class="com.xin.minispring.PerformanceAdvice"></bean>
+	
+	<bean id="performance2" class="com.xin.minispring.PerformanceAdvice2"></bean>
+	
+	<bean id="pointcut" class="com.xin.minispring.aop.pointcut.impl.AspectJExpressionPointcut">
+		<property name="expression" value="execution(* com.xin.minispring.bean.HelloWorldService.helloWorld(..))"></property>
+	</bean>
+	
+	<bean id="AroundAdvisor1" class="com.xin.minispring.aop.advisor.impl.AspectJExpressionPointcutAdvisor">
+		<property name="order" value="2"></property>
+		<property name="pointcut" ref="pointcut"></property>
+		<property name="advice" ref="performance"></property>
+	</bean>
+	
+	<bean id="AroundAdvisor2" class="com.xin.minispring.aop.advisor.impl.AspectJExpressionPointcutAdvisor">
+		<property name="order" value="1"></property>
+		<property name="pointcut" ref="pointcut"></property>
+		<property name="advice" ref="performance2"></property>
+	</bean>
+</beans>

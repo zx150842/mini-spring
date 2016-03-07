@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="outputService" class="com.xin.minispring.bean.OutputService"></bean>
+	<bean id="beanInitializeLogger" class="com.xin.minispring.BeanInitializeLogger"></bean>
+	
+	<bean id="helloWorldService" class="com.xin.minispring.bean.HelloWorldServiceImpl">
+		<property name="text" value="Hello World"></property>
+		<property name="outputService" ref="outputService"></property>
+	</bean>
+</beans>

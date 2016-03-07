@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="aop" class="com.xin.minispring.aop.DefaultAdvisorAutoProxyCreator">
+		<property name="proxyTargetClass" value="true"></property>
+		<property name="exposeProxy" value="true"></property>
+	</bean>
+
+	<bean id="outputService" class="com.xin.minispring.bean.OutputService"></bean>
+
+	<bean id="helloWorldService" class="com.xin.minispring.bean.HelloWorldServiceImpl">
+		<property name="text" value="Hello World"></property>
+		<property name="outputService" ref="outputService"></property>
+	</bean>
+
+	<bean id="performance" class="com.xin.minispring.PerformanceLogger"></bean>
+
+	<bean id="pointcut"
+		class="com.xin.minispring.aop.pointcut.impl.AspectJExpressionPointcut">
+		<property name="expression"
+			value="execution(* com.xin.minispring.bean.HelloWorldService.helloWorld(..))"></property>
+	</bean>
+	
+	<bean id="pointcut2"
+		class="com.xin.minispring.aop.pointcut.impl.AspectJExpressionPointcut">
+		<property name="expression"
+			value="execution(* com.xin.minispring.bean.HelloWorldServiceImpl.unInterfaceMethod(..))"></property>
+	</bean>
+	
+	<bean id="throwingPointcut"
+		class="com.xin.minispring.aop.pointcut.impl.AspectJExpressionPointcut">
+		<property name="expression"
+			value="execution(* com.xin.minispring.bean.HelloWorldService.exceptionMethod(..))"></property>
+	</bean>
+
+	<bean id="beforeAdvice"
+		class="com.xin.minispring.aop.advice.impl.AspectJMethodBeforeAdvice">
+		<property name="aspectBeanName" value="performance"></property>
+		<property name="methodName" value="welcome"></property>
+	</bean>
+
+	<bean id="afterReturningAdvice"
+		class="com.xin.minispring.aop.advice.impl.AspectJAfterReturningAdvice">
+		<property name="aspectBeanName" value="performance"></property>
+		<property name="methodName" value="goodbye"></property>
+	</bean>
+	
+	<bean id="afterThrowingAdvice"
+		class="com.xin.minispring.aop.advice.impl.AspectJAfterThrowingAdvice">
+		<property name="aspectBeanName" value="performance"></property>
+		<property name="methodName" value="afterThrowing"></property>
+	</bean>
+
+	<bean id="beforeAdvisor"
+		class="com.xin.minispring.aop.advisor.impl.AspectJExpressionPointcutAdvisor">
+		<property name="pointcut" ref="pointcut"></property>
+		<property name="advice" ref="beforeAdvice"></property>
+	</bean>
+
+	<bean id="afterReturningAdvisor"
+		class="com.xin.minispring.aop.advisor.impl.AspectJExpressionPointcutAdvisor">
+		<property name="pointcut" ref="pointcut"></property>
+		<property name="advice" ref="afterReturningAdvice"></property>
+	</bean>
+	
+	<bean id="afterThrowingAdvisor"
+		class="com.xin.minispring.aop.advisor.impl.AspectJExpressionPointcutAdvisor">
+		<property name="pointcut" ref="throwingPointcut"></property>
+		<property name="advice" ref="afterThrowingAdvice"></property>
+	</bean>
+	
+	<bean id="beforeAdvisor2"
+		class="com.xin.minispring.aop.advisor.impl.AspectJExpressionPointcutAdvisor">
+		<property name="pointcut" ref="pointcut2"></property>
+		<property name="advice" ref="beforeAdvice"></property>
+	</bean>
+
+</beans>
